@@ -6,6 +6,15 @@ class DivannewparsSpider(scrapy.Spider):
     allowed_domains = ["https://divan.ru"]
     start_urls = ["https://www.divan.ru/category/svet"]
 
+    # Настройки для экспорта в CSV
+    custom_settings = {
+        'FEED_FORMAT': 'csv',
+        'FEED_URI': 'divan_svet.csv',
+        'FEED_EXPORT_ENCODING': 'utf-8',
+        'FEED_EXPORT_FIELDS': ['name', 'price', 'link'],
+    }
+
+
     def parse(self, response):
         svets = response.css('div._Ud0k')
 
